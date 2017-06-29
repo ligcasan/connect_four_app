@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Connect Four App
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A two player connection game.
+A player is assigned with a color. The players take turns placing their own colored discs in a 6x7 grid.
+The first player who forms a horizontal, vertical, or diagonal line of four of his own color wins the game.
