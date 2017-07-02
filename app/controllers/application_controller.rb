@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  def hello
-    render html: "Connect Four App"
+  def index
+    render html: "Connect App"
   end
 end

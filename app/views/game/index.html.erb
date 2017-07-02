@@ -1,0 +1,23 @@
+<h1>Game#index</h1>
+<div class='alert alert-success' id='lara'>
+</div>
+<div>
+<table>
+  <% i = @board_height - 1 %>
+  <% while i >= 0 do %>
+    <tr>
+      
+      <% j = 0 %>
+      <% while j < @board_width do %>
+        <td id=<%= j -%><%= i -%>>
+        </td>
+        <% j += 1 %>
+      <% end %>
+
+    <tr/>
+    <% i -= 1 %>
+  <% end %>
+</table>
+
+<input type='hidden' id='player' value='1'>
+</div>
