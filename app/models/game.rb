@@ -40,8 +40,10 @@ class Game < ApplicationRecord
     # for the player's move and determines if a winning combination was created
 
     y_coordinate = Game.get_final_y_coordinate(x_coordinate)
-    @board[x_coordinate][y_coordinate] = player
-    return Game.is_winner(player, x_coordinate, y_coordinate)
+    player = player == "1" ? 'X' : 'Y'
+    @board[x_coordinate][y_coordinate] = player    
+    status = Game.is_winner(player, x_coordinate, y_coordinate)
+    return {new_x: x_coordinate, new_y: y_coordinate, status: status}
   end
 
   def self.get_final_y_coordinate(x_coordinate)
@@ -70,12 +72,12 @@ class Game < ApplicationRecord
 
     vertical_combo = @board[x_coordinate].join()
     if vertical_combo[winning_combo] != nil
-      return {new_x: x_coordinate, new_y: y_coordinate, status: 'win'}
+      return true
     end
 
     horizontal_combo = @board.map{|i| i[y_coordinate]}.join()
     if horizontal_combo[winning_combo] != nil
-      return {new_x: x_coordinate, new_y: y_coordinate, status: 'win'}
+      return true
     end
 
     upper_diagonal = []
@@ -99,7 +101,7 @@ class Game < ApplicationRecord
     right_diagonal_combo = lower_diagonal + [player] + upper_diagonal
     right_diagonal_combo = right_diagonal_combo.join()
     if right_diagonal_combo[winning_combo] != nil
-      return {new_x: x_coordinate, new_y: y_coordinate, status: 'win'}
+      return true
     end
 
     upper_diagonal = []
@@ -123,10 +125,10 @@ class Game < ApplicationRecord
     left_diagonal_combo = lower_diagonal + [player] + upper_diagonal
     left_diagonal_combo = left_diagonal_combo.join()
     if left_diagonal_combo[winning_combo] != nil
-      return {new_x: x_coordinate, new_y: y_coordinate, status: 'win'}
+      return true
     end
 
-    return {new_x: x_coordinate, new_y: y_coordinate, status: false}
+    return false
   end
 
 end
