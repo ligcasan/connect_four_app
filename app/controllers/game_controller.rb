@@ -8,7 +8,7 @@ class GameController < ApplicationController
   def place_move
     coordinates = params[:id].split('').map {|x| x.to_i}
     player = params[:player] 
-    result = Game.place_move(player, coordinates[0], coordinates[1])
+    result = Game.place_move(player, coordinates[0])
     response = {data: result, status: 'success'}.to_json
     render :json => response
   end
